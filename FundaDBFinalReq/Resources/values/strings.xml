@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">FundaDBFinalReq</string>
+    <string name="action_settings">Settings</string>
+	<string name="username">Username</string>
+	<string name="password">Password</string>
+	<string name="login">Login</string>
+	<string name="home">Home</string>
+	<string name="sign_out">Sign Out</string>
+	<string name="name_ph">Last, First MI</string>
+	<string name="faculty_id">Faculty ID</string>
+	<string name="email">Email</string>
+	<string name="create_event">Create Event</string>
+	<string name="cancel">Cancel</string>
+	<string name="create">Create</string>
+	<string name="events">Manage Events</string>
+	<string name="time">Time</string>
+	<string name="event">Event</string>
+	<string name="edit_event">Edit Event</string>
+	<string name="edit">Edit</string>
+</resources>

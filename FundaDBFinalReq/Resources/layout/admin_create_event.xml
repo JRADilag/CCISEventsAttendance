@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomNavigationView1"
+        app:menu="@menu/navbar"
+        android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardView1"
+            app:cardBackgroundColor="#ddddee"
+            android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <TextView
+                    android:text="@string/create_event"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView1"
+                    android:textSize="26sp"
+                    android:textStyle="bold"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:id="@+id/space1" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/event_name_edittxt"
+                    android:hint="Name"
+                    android:singleLine="true" />
+                <EditText
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText1"
+                    android:lines="3"
+                    android:hint="Description"
+                    android:gravity="bottom|start"
+                    android:autoSizeTextType="none"
+                    android:maxLength="64"
+                    android:scrollHorizontally="false" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/event_location_edittxt"
+                    android:hint="Location"
+                    android:singleLine="true" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:inputType="datetime"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:id="@+id/editText2"
+                        android:hint="IN"
+                        android:singleLine="true"
+                        android:maxLength="8" />
+                    <EditText
+                        android:inputType="datetime"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:id="@+id/editText3"
+                        android:hint="OUT"
+                        android:singleLine="true"
+                        android:maxLength="8" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <Button
+                android:text="@string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button1" />
+            <Button
+                android:text="@string/create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
