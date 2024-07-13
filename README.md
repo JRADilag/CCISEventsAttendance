@@ -4,4 +4,4 @@ Final Requirement for Database Fundamental (Laboratory)
 
 ## Set Up Instructions
 
-Place the contents of the htdocs folder (Database.php) into your XAMPP htdocs folder.
+Open FundaDBFinalReq/htdocs and place its contents (Database.php) into your XAMPP htdocs folder.
