@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Time.Temporal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,27 @@ namespace FundaDBFinalReq
             return null;
         }
 
+        private Events getEvents()
+        {
+            DatabaseHander databaseHandler;
+            databaseHandler = new DatabaseHander(this);
+            string datastring = databaseHandler.GetData("system", "admin", "events");
+
+            Events events = new Events();
+            string[] rows = datastring.Split(";", StringSplitOptions.RemoveEmptyEntries);
+            foreach (string entry in rows)
+            {
+                string[] eventEntry = entry.Split(",", StringSplitOptions.RemoveEmptyEntries);
+
+                EventData eventData = new EventData
+                {
+                    eventID = eventEntry[0],
+                    eventName = eventEntry[1],
+                };
+                events.Add(eventData);
+            }
+            return events;
+        }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -62,8 +84,26 @@ namespace FundaDBFinalReq
             Attendance_List eventList = ParseData(datastring);
             LinearLayout ll = FindViewById<LinearLayout>(Resource.Id.main_ll);
 
-            foreach (Students students in eventList)
+            Spinner spinner = FindViewById <Spinner> (Resource.Id.spinner1);
+
+            List<string> test = new List<string>();
+
+            Events eventData = getEvents();
+            foreach (EventData a in eventData)
             {
+                test.Add(a.eventName);
+            }
+
+            ArrayAdapter<string> tst = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, test);
+            spinner.Adapter = tst;
+
+            // Handle item selection
+            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
+
+            //foreach (Students students in eventList)
+            for (int i = 0; i < 20  && i < eventList.Count; i++)
+            {
+                Students students = eventList[i]; 
                 View child = LayoutInflater.Inflate(Resource.Layout.attendance_card, null);
                 TextView name = child.FindViewById<TextView>(Resource.Id.attendanceName);
                 TextView eventname = child.FindViewById<TextView>(Resource.Id.attendanceEventName);
@@ -72,6 +112,18 @@ namespace FundaDBFinalReq
                 eventname.Text = students.eventName;
 
                 ll.AddView(child);
+
+            }
+
+            void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+            {
+            Spinner spinner = (Spinner)sender;
+            string selectedItem = spinner.GetItemAtPosition(e.Position).ToString();
+            Toast.MakeText(this, $"Selected: {selectedItem}", ToastLength.Short).Show();
+
+            DatabaseHander databaseHandler;
+            databaseHandler = new DatabaseHander(this);
+            string datastring = databaseHandler.GetDataSorted("system", "admin", "attendance", selectedItem);
 
             }
         }

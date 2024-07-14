@@ -43,6 +43,17 @@ namespace FundaDBFinalReq
             res = reader.ReadToEnd();
             return res;
         }
+        public string GetDataSorted(string username, string password, string page, string sort)
+        {
+            // DATABASE.PHP MUST BE IN HTDOCS FOLDER
+
+            string url = $"http://{xamppIP}/DatabaseAttendanceSort.php/?username={username}&password={password}&page={page}&evid={sort}";
+            request = (HttpWebRequest)WebRequest.Create(url);
+            response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            res = reader.ReadToEnd();
+            return res;
+        }
 
         public string InsertData(string username, string password, string page, string evname, string evloc, string evdesc, string evstart, string evend)
         {
@@ -51,6 +62,37 @@ namespace FundaDBFinalReq
             request = (HttpWebRequest)WebRequest.Create(url);
             response = (HttpWebResponse)request.GetResponse();
 
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            res = reader.ReadToEnd();
+            return res;
+        }
+        public string EditData(string username, string password, string page, string evid, string evname, string evloc, string evdesc, string evstart, string evend)
+        {
+            //string url = $"http://{xamppIP}/DatabaseInsert.php/?username={username}&password={password}&page={page}&evname={evname}&evloc={evloc}&evdesc={evdesc}&evstart={evstart}&evedn={evend}";
+            string url = $"http://{xamppIP}/DatabaseEdit.php/?username={username}&password={password}&page={page}&evid={evid}&evname={evname}&evloc={evloc}&evdesc={evdesc}";
+            request = (HttpWebRequest)WebRequest.Create(url);
+            response = (HttpWebResponse)request.GetResponse();
+
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            res = reader.ReadToEnd();
+            return res;
+        }
+
+        public string DeleteData(string username, string password, string page, string evid)
+        {
+            string url = $"http://{xamppIP}/DatabaseDelete.php/?username={username}&password={password}&page={page}&evid={evid}";
+            request = (HttpWebRequest)WebRequest.Create(url);
+            response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            res = reader.ReadToEnd();
+            return res;
+        }
+
+        public string GetDataLogin(string username, string password, string page, string user, string passwordd)
+        {
+            string url = $"http://{xamppIP}/DatabaseLogin.php/?username={username}&password={password}&page={page}&evid={user}&evname={passwordd}";
+            request = (HttpWebRequest)WebRequest.Create(url);
+            response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             res = reader.ReadToEnd();
             return res;

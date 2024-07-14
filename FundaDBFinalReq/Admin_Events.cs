@@ -30,7 +30,7 @@ namespace FundaDBFinalReq
             public string eventStart { get; set; }
             public string eventEnd { get; set; }
         }
-        private Events ParseData(string wholeData)
+        public Events ParseData(string wholeData)
         {
             Events events = new Events();
             if (wholeData != null){
@@ -61,7 +61,7 @@ namespace FundaDBFinalReq
             StartActivity(createEvent);
             Finish();
         }
-        private void populateEvents()
+        public void populateEvents()
         {
             DatabaseHander databaseHandler;
             databaseHandler = new DatabaseHander(this);

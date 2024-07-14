@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Database;
+using Android.Net.Wifi.Rtt;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -27,6 +28,10 @@ namespace FundaDBFinalReq
 
             databaseHandler = new DatabaseHander(this);
             string datastring = databaseHandler.GetData("system", "admin", "events");
+
+            String a = Intent.GetStringExtra("data");
+            TextView username = FindViewById<TextView>(Resource.Id.username_tv);
+            username.Text = a;
 
             //TextView tv = FindViewById<TextView>(Resource.Id.textView2);
             //tv.Text = datastring;
