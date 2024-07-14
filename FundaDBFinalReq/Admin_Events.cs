@@ -16,15 +16,6 @@ using System.Xml;
 
 namespace FundaDBFinalReq
 {
-    public class Events
-    {
-        public string Name { get; set; }
-        public string Location { get; set; }
-        public string Description { get; set; }
-        public string Start { get; set; }
-        public string End { get; set; }
-    }
-
     [Activity(Label = "Admin_Events")]
     public class Admin_Events : Activity_Template
     {
@@ -38,7 +29,6 @@ namespace FundaDBFinalReq
             public string eventDescription { get; set; }
             public string eventStart { get; set; }
             public string eventEnd { get; set; }
-
         }
         private Events ParseData(string wholeData)
         {
@@ -65,24 +55,19 @@ namespace FundaDBFinalReq
             return null;
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        private void toAddEvent(object sender, EventArgs e)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.admin_event);
-            Initialize(Resource.Id.events);
-
-            // Create your application here
-            //CardView cw = FindViewById<CardView>(Resource.Id.card_template);
-            //CardView newcard = cw;
-            //newcard.Visibility = ViewStates.Visible
+            Intent createEvent = new Intent(this, (typeof(Create_Event)));
+            StartActivity(createEvent);
+            Finish();
+        }
+        private void populateEvents()
+        {
             DatabaseHander databaseHandler;
             databaseHandler = new DatabaseHander(this);
-            string datastring = databaseHandler.GetData();
-
+            string datastring = databaseHandler.GetData("system", "admin", "events");
             Events eventList = ParseData(datastring);
-
             LinearLayout ll = FindViewById<LinearLayout>(Resource.Id.main_ll);
-
             foreach (EventData eventData in eventList)
             {
                 View child = LayoutInflater.Inflate(Resource.Layout.event_card, null);
@@ -91,6 +76,17 @@ namespace FundaDBFinalReq
                 TextView timedate = child.FindViewById<TextView>(Resource.Id.eventTimeDate);
                 TextView loc = child.FindViewById<TextView>(Resource.Id.eventLocation);
 
+                child.Click += (s, e) => {
+
+                    Intent editEvent = new Intent(this, (typeof(Edit_Event)));
+
+                    string details = $"{name.Text},{description.Text},{timedate.Text},{loc.Text},{eventData.eventID.ToString()}";
+                    editEvent.PutExtra("eventDetails", details);
+                    StartActivity(editEvent);
+                    Finish();
+                
+                };
+
                 description.Text = eventData.eventDescription;
                 timedate.Text = $"{eventData.eventStart.Substring(0, 15)} {eventData.eventStart.Substring(26, 2)}";
                 loc.Text = eventData.eventLocation;
@@ -98,15 +94,18 @@ namespace FundaDBFinalReq
                 ll.AddView(child);
 
             }
-
-            //for (int i = 0; i < testEventString.Length; i++)
-            //{
-                
-            //    View child = LayoutInflater.Inflate(Resource.Layout.event_card, null);
-            //    TextView name = child.FindViewById<TextView>(Resource.Id.eventName);
-            //    name.Text = testEventString[i];
-            //    ll.AddView(child);
-            //}   
         }
-    }
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.admin_event);
+            Initialize(Resource.Id.events);
+            
+            Button addEvent = FindViewById<Button>(Resource.Id.event_create);
+            addEvent.Click += toAddEvent;
+
+            populateEvents();
+        }
+            }
 }
