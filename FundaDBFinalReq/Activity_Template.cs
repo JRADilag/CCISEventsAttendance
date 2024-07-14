@@ -30,7 +30,7 @@ namespace FundaDBFinalReq
             toHome.SetFlags(ActivityFlags.ReorderToFront);
             Intent toEvents = new Intent(this, (typeof(Admin_Events)));
             toEvents.SetFlags(ActivityFlags.ReorderToFront);
-            Intent toAttendance = new Intent(this, (typeof(MainActivity)));
+            Intent toAttendance = new Intent(this, (typeof(Attendance)));
             toAttendance.SetFlags(ActivityFlags.ReorderToFront);
             navbar = FindViewById<BottomNavigationView>(Resource.Id.bottomNavigationView1);
             navbar.Menu.FindItem(id).SetChecked(true);
@@ -40,5 +40,6 @@ namespace FundaDBFinalReq
 
             navbar.Menu.FindItem(id).SetIntent(null);
         }
+        
     }
 }

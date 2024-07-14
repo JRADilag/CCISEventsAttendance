@@ -26,16 +26,10 @@ namespace FundaDBFinalReq
             Initialize(Resource.Id.home);
 
             databaseHandler = new DatabaseHander(this);
-            string datastring = databaseHandler.GetData();
+            string datastring = databaseHandler.GetData("system", "admin", "events");
 
-            TextView tv = FindViewById<TextView>(Resource.Id.textView2);
-            tv.Text = datastring;
-            //CardView cw = new CardView(this);
-            //cw.set
-
-            //LinearLayout ll = FindViewById<LinearLayout>(Resource.Id.linearLayout1);
-            //ll.AddView(cw);
-
+            //TextView tv = FindViewById<TextView>(Resource.Id.textView2);
+            //tv.Text = datastring;
         }
     }
 }
