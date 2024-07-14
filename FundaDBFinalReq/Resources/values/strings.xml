@@ -17,4 +17,8 @@
 	<string name="event">Event</string>
 	<string name="edit_event">Edit Event</string>
 	<string name="edit">Edit</string>
+	<string-array name="myarray">
+		<item>ABCD</item>
+		<item>EFGH</item>
+	</string-array>
 </resources>

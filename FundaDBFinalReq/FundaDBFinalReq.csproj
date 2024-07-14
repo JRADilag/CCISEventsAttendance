@@ -168,6 +168,10 @@
     <Content Include="htdocs\Database.php" />
     <Content Include="htdocs\DatabaseEdit.php" />
     <Content Include="htdocs\DatabaseInsert.php" />
+    <AndroidResource Include="Resources\drawable\image.png" />
+    <AndroidResource Include="Resources\drawable\attendance.png" />
+    <AndroidResource Include="Resources\drawable\event.png" />
+    <AndroidResource Include="Resources\drawable\home.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

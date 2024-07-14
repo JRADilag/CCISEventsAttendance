@@ -72,7 +72,7 @@
                     app:cardCornerRadius="75dp"
                     >
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/image"
                         android:minHeight="75dp"
                         android:minWidth="75dp"
                         android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                         android:layout_height="match_parent"
                         android:id="@+id/username_tv" />
                     <TextView
-                        android:text="Dept - Pos'n/Role"
+                        android:text="Organizer"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -112,6 +112,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
+            <!--
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,6 +144,7 @@
                         android:layout_height="match_parent"
                         android:id="@+id/email_tv" />
                 </LinearLayout>
+            -->
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:minWidth="25px"

@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using System;
+using static FundaDBFinalReq.Admin_Events;
 
 namespace FundaDBFinalReq
 {
@@ -29,8 +30,23 @@ namespace FundaDBFinalReq
         }
         public void Login(object sender, EventArgs e)
         {
-            Intent i = new Intent(this, typeof(Admin_Home));
-            StartActivity(i);
+            DatabaseHander databaseHandler;
+            databaseHandler = new DatabaseHander(this);
+            string datastring = databaseHandler.GetDataLogin("system", "admin", "events", username_edit_text.Text, password_edit_text.Text);
+
+            if (datastring == "1")
+            {
+                Intent i = new Intent(this, typeof(Admin_Home));
+                string datum = $"{username_edit_text.Text}";
+                i.PutExtra("data", datum);
+                StartActivity(i);
+
+            }
+            else
+            {
+                Toast.MakeText(this, datastring, ToastLength.Short).Show();
+
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
